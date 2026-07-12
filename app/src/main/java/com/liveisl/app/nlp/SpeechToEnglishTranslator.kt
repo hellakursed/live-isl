@@ -6,6 +6,7 @@ import com.google.gson.reflect.TypeToken
 import com.liveisl.app.asr.AsrLanguage
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import java.text.Normalizer
 
 data class TranslationResult(
     val originalText: String,
@@ -15,8 +16,11 @@ data class TranslationResult(
 )
 
 /**
- * Detects Hindi / Tamil / Kannada / Bengali via Unicode script, then maps tokens to
- * English using the bundled [indic_to_english.json] asset — no network / model download.
+ * Detects Hindi / Tamil / Kannada / Bengali via Unicode script (or language chip hint),
+ * then maps tokens to English using the bundled [indic_to_english.json] asset.
+ *
+ * Covers both native-script ASR output and common Latin transliterations
+ * (many devices return "namaste" / "vanakkam" instead of native glyphs).
  */
 class SpeechToEnglishTranslator(context: Context) {
     private val appContext = context.applicationContext
@@ -48,17 +52,16 @@ class SpeechToEnglishTranslator(context: Context) {
 
         val tokens = tokenize(trimmed)
         var hit = 0
-        val englishTokens = tokens.map { token ->
-            val key = token.trim()
-            val mapped = dict[key]
-                ?: dict[key.lowercase()]
-                ?: dict.entries.firstOrNull { it.key.equals(key, ignoreCase = true) }?.value
-            if (mapped != null) {
-                hit++
-                mapped
-            } else {
-                // Keep unknown tokens as-is (may already be English / names).
-                token
+        val englishTokens = tokens.mapNotNull { token ->
+            val mapped = lookup(dict, token)
+            when {
+                mapped != null -> {
+                    hit++
+                    mapped
+                }
+                // Drop leftover native-script particles that never map to ISL lemmas.
+                scriptGuess(token) != null -> null
+                else -> token
             }
         }
         val english = englishTokens.joinToString(" ").trim()
@@ -72,14 +75,48 @@ class SpeechToEnglishTranslator(context: Context) {
 
     private fun detectLanguageTag(text: String, hint: AsrLanguage): String {
         scriptGuess(text)?.let { return it }
+        // Chip selected Indic: treat Latin ASR output as that language (romanization).
         if (hint != AsrLanguage.AUTO && hint != AsrLanguage.ENGLISH) {
             return hint.bcp47
         }
         return "en"
     }
 
-    private fun tokenize(text: String): List<String> =
-        text.split(Regex("\\s+")).filter { it.isNotBlank() }
+    private fun tokenize(text: String): List<String> {
+        val normalized = Normalizer.normalize(text, Normalizer.Form.NFC)
+        return normalized
+            .split(Regex("[\\s\\u00A0]+"))
+            .map { it.trim() }
+            .filter { it.isNotBlank() }
+    }
+
+    private fun lookup(dict: Map<String, String>, raw: String): String? {
+        val variants = keyVariants(raw)
+        for (key in variants) {
+            dict[key]?.let { return it }
+            dict[key.lowercase()]?.let { return it }
+        }
+        // Case-insensitive fallback for Latin keys only.
+        for (key in variants) {
+            if (key.any { it.code > 127 }) continue
+            dict.entries.firstOrNull { it.key.equals(key, ignoreCase = true) }?.value?.let {
+                return it
+            }
+        }
+        return null
+    }
+
+    private fun keyVariants(raw: String): List<String> {
+        val stripped = raw
+            .trim()
+            .trim('"', '\'', '`', '“', '”', '‘', '’')
+            .replace(PUNCTUATION, "")
+            .trim()
+        if (stripped.isEmpty()) return emptyList()
+        val nfc = Normalizer.normalize(stripped, Normalizer.Form.NFC)
+        val nfkc = Normalizer.normalize(stripped, Normalizer.Form.NFKC)
+        return listOf(nfc, nfkc, stripped).distinct()
+    }
 
     private fun loadLexicons(): Map<String, Map<String, String>> {
         return try {
@@ -96,6 +133,7 @@ class SpeechToEnglishTranslator(context: Context) {
 
     companion object {
         private const val ASSET_PATH = "dictionary/indic_to_english.json"
+        private val PUNCTUATION = Regex("[\\p{Punct}\\p{IsPunctuation}।॥٬،؟！？…]+")
 
         /** Unicode script detection — no ML model required. */
         fun scriptGuess(text: String): String? {

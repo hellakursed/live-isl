@@ -3,10 +3,13 @@ package com.liveisl.app.asr
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.os.SystemClock
 import android.speech.RecognitionListener
 import android.speech.RecognizerIntent
 import android.speech.SpeechRecognizer
+import android.util.Log
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
@@ -47,13 +50,16 @@ class SherpaStreamingAsr(
 }
 
 /**
- * Continuous Android SpeechRecognizer — same restart behavior as before the
- * debounce / silence-timeout / cancel-before-restart / online-fallback experiments.
+ * Continuous Android SpeechRecognizer with:
+ * - 1.8s minimum interval between starts (debounce)
+ * - Longer complete/possible silence timeouts
+ * - cancel() before each restart to clear busy sessions
  */
 class AndroidSpeechStreamingAsr(
     private val context: Context,
 ) : StreamingAsr {
-    private val scope = CoroutineScope(SupervisorJob() + Dispatchers.Main)
+    private val scope = CoroutineScope(SupervisorJob() + Dispatchers.Main.immediate)
+    private val mainHandler = Handler(Looper.getMainLooper())
     private val _partials = MutableSharedFlow<AsrPartial>(extraBufferCapacity = 64)
     private val _listening = MutableStateFlow(false)
 
@@ -66,22 +72,76 @@ class AndroidSpeechStreamingAsr(
     private var language: AsrLanguage = AsrLanguage.ENGLISH
     private var listenStartedAt = 0L
     private var shouldRestart = false
+    private var isStarting = false
+    private var lastStartAt = 0L
+    private var consecutiveNoMatch = 0
+    private var preferOffline = true
+
+    private val restartRunnable = Runnable {
+        if (shouldRestart && _listening.value) {
+            startListeningInternal()
+        }
+    }
 
     private val listener = object : RecognitionListener {
-        override fun onReadyForSpeech(params: Bundle?) = Unit
+        override fun onReadyForSpeech(params: Bundle?) {
+            isStarting = false
+        }
+
         override fun onBeginningOfSpeech() {
             listenStartedAt = SystemClock.elapsedRealtime()
+            consecutiveNoMatch = 0
         }
+
         override fun onRmsChanged(rmsdB: Float) = Unit
         override fun onBufferReceived(buffer: ByteArray?) = Unit
         override fun onEndOfSpeech() = Unit
+
         override fun onError(error: Int) {
-            if (shouldRestart && _listening.value) {
-                scope.launch { restartListening() }
+            isStarting = false
+            Log.w(TAG, "ASR error=${errorName(error)} ($error)")
+            when (error) {
+                SpeechRecognizer.ERROR_CLIENT,
+                SpeechRecognizer.ERROR_RECOGNIZER_BUSY,
+                -> {
+                    scheduleRestart(delayMs = RESTART_BUSY_MS)
+                }
+                SpeechRecognizer.ERROR_NO_MATCH,
+                SpeechRecognizer.ERROR_SPEECH_TIMEOUT,
+                -> {
+                    consecutiveNoMatch++
+                    val delay = if (consecutiveNoMatch >= 3) RESTART_SILENCE_LONG_MS else RESTART_SILENCE_MS
+                    scheduleRestart(delayMs = delay)
+                }
+                SpeechRecognizer.ERROR_NETWORK,
+                SpeechRecognizer.ERROR_NETWORK_TIMEOUT,
+                -> {
+                    preferOffline = false
+                    scheduleRestart(delayMs = RESTART_NETWORK_MS)
+                }
+                SpeechRecognizer.ERROR_INSUFFICIENT_PERMISSIONS,
+                SpeechRecognizer.ERROR_SERVER,
+                -> {
+                    shouldRestart = false
+                    _listening.value = false
+                    scope.launch {
+                        _partials.emit(
+                            AsrPartial(
+                                text = "",
+                                isFinal = true,
+                                latencyMs = 0,
+                                engine = "Speech error: ${errorName(error)}",
+                            ),
+                        )
+                    }
+                }
+                else -> scheduleRestart(delayMs = RESTART_DEFAULT_MS)
             }
         }
 
         override fun onResults(results: Bundle?) {
+            isStarting = false
+            consecutiveNoMatch = 0
             val texts = results?.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION)
             val text = texts?.firstOrNull().orEmpty()
             if (text.isNotBlank()) {
@@ -97,15 +157,14 @@ class AndroidSpeechStreamingAsr(
                     )
                 }
             }
-            if (shouldRestart && _listening.value) {
-                scope.launch { restartListening() }
-            }
+            scheduleRestart(delayMs = RESTART_AFTER_RESULT_MS)
         }
 
         override fun onPartialResults(partialResults: Bundle?) {
             val texts = partialResults?.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION)
             val text = texts?.firstOrNull().orEmpty()
             if (text.isNotBlank()) {
+                consecutiveNoMatch = 0
                 val latency = SystemClock.elapsedRealtime() - listenStartedAt
                 scope.launch {
                     _partials.emit(
@@ -126,7 +185,11 @@ class AndroidSpeechStreamingAsr(
     override suspend fun start(language: AsrLanguage) {
         this.language = if (language == AsrLanguage.AUTO) AsrLanguage.ENGLISH else language
         shouldRestart = true
+        consecutiveNoMatch = 0
+        // English usually has an offline pack; Indic packs are often missing.
+        preferOffline = this.language == AsrLanguage.ENGLISH
         if (!SpeechRecognizer.isRecognitionAvailable(context)) {
+            _listening.value = false
             _partials.emit(
                 AsrPartial(
                     text = "",
@@ -137,35 +200,69 @@ class AndroidSpeechStreamingAsr(
             )
             return
         }
+        ensureRecognizer()
+        _listening.value = true
+        startListeningInternal()
+    }
+
+    private fun ensureRecognizer() {
         if (recognizer == null) {
             recognizer = SpeechRecognizer.createSpeechRecognizer(context).also {
                 it.setRecognitionListener(listener)
             }
         }
-        _listening.value = true
-        restartListening()
     }
 
-    private fun restartListening() {
+    private fun scheduleRestart(delayMs: Long) {
+        mainHandler.removeCallbacks(restartRunnable)
+        if (!shouldRestart || !_listening.value) return
+        mainHandler.postDelayed(restartRunnable, delayMs)
+    }
+
+    private fun startListeningInternal() {
+        if (!shouldRestart || !_listening.value) return
+        if (isStarting) return
+
+        val now = SystemClock.elapsedRealtime()
+        val sinceLast = now - lastStartAt
+        if (sinceLast < MIN_START_INTERVAL_MS) {
+            scheduleRestart(MIN_START_INTERVAL_MS - sinceLast)
+            return
+        }
+
+        isStarting = true
+        lastStartAt = now
+        listenStartedAt = now
+
         val intent = Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH).apply {
             putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM)
             putExtra(RecognizerIntent.EXTRA_LANGUAGE, language.tag)
             putExtra(RecognizerIntent.EXTRA_PARTIAL_RESULTS, true)
             putExtra(RecognizerIntent.EXTRA_MAX_RESULTS, 1)
-            putExtra(RecognizerIntent.EXTRA_PREFER_OFFLINE, true)
+            putExtra(RecognizerIntent.EXTRA_PREFER_OFFLINE, preferOffline)
             putExtra(RecognizerIntent.EXTRA_CALLING_PACKAGE, context.packageName)
+            // Keep the session open longer so silence doesn't end every ~2s.
+            putExtra(RecognizerIntent.EXTRA_SPEECH_INPUT_COMPLETE_SILENCE_LENGTH_MILLIS, 2500L)
+            putExtra(RecognizerIntent.EXTRA_SPEECH_INPUT_POSSIBLY_COMPLETE_SILENCE_LENGTH_MILLIS, 2000L)
+            putExtra(RecognizerIntent.EXTRA_SPEECH_INPUT_MINIMUM_LENGTH_MILLIS, 1500L)
         }
-        listenStartedAt = SystemClock.elapsedRealtime()
+
         try {
+            // Cancel any in-flight session before starting to avoid ERROR_RECOGNIZER_BUSY loops.
+            recognizer?.cancel()
             recognizer?.startListening(intent)
-        } catch (_: Exception) {
-            // ignore transient restart races
+        } catch (e: Exception) {
+            Log.e(TAG, "startListening failed", e)
+            isStarting = false
+            scheduleRestart(RESTART_DEFAULT_MS)
         }
     }
 
     override suspend fun stop() {
         shouldRestart = false
         _listening.value = false
+        isStarting = false
+        mainHandler.removeCallbacks(restartRunnable)
         try {
             recognizer?.stopListening()
             recognizer?.cancel()
@@ -176,8 +273,38 @@ class AndroidSpeechStreamingAsr(
     override fun release() {
         shouldRestart = false
         _listening.value = false
+        isStarting = false
+        mainHandler.removeCallbacks(restartRunnable)
         recognizer?.destroy()
         recognizer = null
+    }
+
+    companion object {
+        private const val TAG = "AndroidSpeechAsr"
+        private const val MIN_START_INTERVAL_MS = 1800L
+        private const val RESTART_AFTER_RESULT_MS = 600L
+        private const val RESTART_SILENCE_MS = 1600L
+        private const val RESTART_SILENCE_LONG_MS = 2800L
+        private const val RESTART_BUSY_MS = 1200L
+        private const val RESTART_NETWORK_MS = 2000L
+        private const val RESTART_DEFAULT_MS = 1500L
+
+        private fun errorName(error: Int): String = when (error) {
+            SpeechRecognizer.ERROR_NETWORK_TIMEOUT -> "NETWORK_TIMEOUT"
+            SpeechRecognizer.ERROR_NETWORK -> "NETWORK"
+            SpeechRecognizer.ERROR_AUDIO -> "AUDIO"
+            SpeechRecognizer.ERROR_SERVER -> "SERVER"
+            SpeechRecognizer.ERROR_CLIENT -> "CLIENT"
+            SpeechRecognizer.ERROR_SPEECH_TIMEOUT -> "SPEECH_TIMEOUT"
+            SpeechRecognizer.ERROR_NO_MATCH -> "NO_MATCH"
+            SpeechRecognizer.ERROR_RECOGNIZER_BUSY -> "RECOGNIZER_BUSY"
+            SpeechRecognizer.ERROR_INSUFFICIENT_PERMISSIONS -> "INSUFFICIENT_PERMISSIONS"
+            SpeechRecognizer.ERROR_TOO_MANY_REQUESTS -> "TOO_MANY_REQUESTS"
+            SpeechRecognizer.ERROR_SERVER_DISCONNECTED -> "SERVER_DISCONNECTED"
+            SpeechRecognizer.ERROR_LANGUAGE_NOT_SUPPORTED -> "LANGUAGE_NOT_SUPPORTED"
+            SpeechRecognizer.ERROR_LANGUAGE_UNAVAILABLE -> "LANGUAGE_UNAVAILABLE"
+            else -> "UNKNOWN"
+        }
     }
 }
 

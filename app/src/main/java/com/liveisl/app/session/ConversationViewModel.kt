@@ -277,6 +277,7 @@ class ConversationViewModel(application: Application) : AndroidViewModel(applica
     }
 
     fun setLanguage(language: AsrLanguage) {
+        val wasListening = _ui.value.isListening
         _ui.update {
             it.copy(
                 language = language,
@@ -285,6 +286,17 @@ class ConversationViewModel(application: Application) : AndroidViewModel(applica
                     else -> "Language: ${language.displayName} — translate to English → ISL"
                 },
             )
+        }
+        // Restart ASR so the new locale / pack takes effect immediately.
+        if (wasListening) {
+            viewModelScope.launch {
+                try {
+                    asr.stop()
+                    asr.start(language.speechLocale())
+                } catch (e: Exception) {
+                    _ui.update { it.copy(error = e.message) }
+                }
+            }
         }
     }
 
