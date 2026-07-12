@@ -10,6 +10,7 @@ import com.liveisl.app.asr.StreamingAsr
 import com.liveisl.app.asr.StreamingAsrFactory
 import com.liveisl.app.data.Gloss
 import com.liveisl.app.nlp.IslGlossPipeline
+import com.liveisl.app.nlp.SpeechToEnglishTranslator
 import com.liveisl.app.sign.AvatarCharacter
 import com.liveisl.app.sign.CislrPackManager
 import com.liveisl.app.sign.CislrPackStatus
@@ -41,6 +42,8 @@ data class ConversationUiState(
     val isListening: Boolean = false,
     val partialText: String = "",
     val committedText: String = "",
+    val englishTranscript: String = "",
+    val detectedLanguageLabel: String = "",
     val glossStrip: List<String> = emptyList(),
     val currentGlossLabel: String? = null,
     val lastGlossLabel: String? = null,
@@ -56,6 +59,7 @@ data class ConversationUiState(
     val videoSource: VideoSource = VideoSource.VIKASOPS,
     val cislrStatus: CislrPackStatus = CislrPackStatus(),
     val cislrPackUrl: String = "",
+    val playbackSpeed: Float = 1f,
     val latency: LatencyStats = LatencyStats(),
     val skippedWords: List<String> = emptyList(),
     val suggestedWords: List<String> = emptyList(),
@@ -67,11 +71,13 @@ class ConversationViewModel(application: Application) : AndroidViewModel(applica
     private val pipeline = IslGlossPipeline(app.dictionary)
     private val preferences = SignPreferences(application)
     private val cislrPack = CislrPackManager(application)
+    private val translator = SpeechToEnglishTranslator(application)
     val signHub = SignRendererHub(application, viewModelScope, preferences)
 
     private var asr: StreamingAsr = StreamingAsrFactory.create(application)
     private var committedTokenCount = 0
     private var lastPartialWordCount = 0
+    private var lastDetectedAsrLanguage: AsrLanguage = AsrLanguage.ENGLISH
 
     private val _ui = MutableStateFlow(
         ConversationUiState(
@@ -83,6 +89,7 @@ class ConversationViewModel(application: Application) : AndroidViewModel(applica
             videoSource = preferences.videoSource,
             cislrStatus = cislrPack.refreshStatus(),
             cislrPackUrl = preferences.cislrPackUrl,
+            playbackSpeed = preferences.playbackSpeed,
         ),
     )
     val uiState: StateFlow<ConversationUiState> = _ui.asStateFlow()
@@ -90,11 +97,13 @@ class ConversationViewModel(application: Application) : AndroidViewModel(applica
     init {
         // Ensure dictionary matches persisted source
         app.dictionary.reload(preferences.videoSource)
+        signHub.setPlaybackSpeed(preferences.playbackSpeed)
         _ui.update {
             it.copy(
                 suggestedWords = app.dictionary.suggestedSpokenWords(),
                 videoSource = preferences.videoSource,
                 cislrStatus = cislrPack.refreshStatus(),
+                playbackSpeed = preferences.playbackSpeed,
             )
         }
 
@@ -268,7 +277,25 @@ class ConversationViewModel(application: Application) : AndroidViewModel(applica
     }
 
     fun setLanguage(language: AsrLanguage) {
-        _ui.update { it.copy(language = language) }
+        _ui.update {
+            it.copy(
+                language = language,
+                bootstrapMessage = when (language) {
+                    AsrLanguage.AUTO -> "Language: Auto — detect → English → ISL"
+                    else -> "Language: ${language.displayName} — translate to English → ISL"
+                },
+            )
+        }
+    }
+
+    fun setPlaybackSpeed(speed: Float) {
+        signHub.setPlaybackSpeed(speed)
+        _ui.update {
+            it.copy(
+                playbackSpeed = preferences.playbackSpeed,
+                bootstrapMessage = "Playback speed ${preferences.playbackSpeed}×",
+            )
+        }
     }
 
     fun setRole(role: ConversationRole) {
@@ -355,7 +382,9 @@ class ConversationViewModel(application: Application) : AndroidViewModel(applica
         lastPartialWordCount = 0
         viewModelScope.launch {
             try {
-                asr.start(_ui.value.language)
+                // SpeechRecognizer needs a concrete locale. Auto listens as English;
+                // Indic chips select the matching ASR pack. Translation still runs after.
+                asr.start(_ui.value.language.speechLocale())
             } catch (e: Exception) {
                 _ui.update { it.copy(error = e.message) }
             }
@@ -380,6 +409,8 @@ class ConversationViewModel(application: Application) : AndroidViewModel(applica
             it.copy(
                 partialText = "",
                 committedText = "",
+                englishTranscript = "",
+                detectedLanguageLabel = "",
                 glossStrip = emptyList(),
                 currentGlossLabel = null,
                 lastGlossLabel = null,
@@ -402,15 +433,19 @@ class ConversationViewModel(application: Application) : AndroidViewModel(applica
         }
         if (partial.isFinal) {
             commitText(partial.text, partial.latencyMs)
-        } else {
-            val words = partial.text.trim().split(Regex("\\s+")).filter { it.isNotBlank() }
-            if (words.size > 1) {
-                val stable = words.dropLast(1)
-                if (stable.size > lastPartialWordCount) {
-                    val newly = stable.drop(lastPartialWordCount)
-                    lastPartialWordCount = stable.size
-                    mapAndEnqueue(newly)
-                }
+            return
+        }
+        // Stream partials into ISL only for English ASR (pre-translation path).
+        // Indic speech waits for a final result, then lexicon → English → ISL.
+        val lang = _ui.value.language.speechLocale()
+        if (lang != AsrLanguage.ENGLISH) return
+        val words = partial.text.trim().split(Regex("\\s+")).filter { it.isNotBlank() }
+        if (words.size > 1) {
+            val stable = words.dropLast(1)
+            if (stable.size > lastPartialWordCount) {
+                val newly = stable.drop(lastPartialWordCount)
+                lastPartialWordCount = stable.size
+                viewModelScope.launch { mapAndEnqueue(newly) }
             }
         }
     }
@@ -432,14 +467,37 @@ class ConversationViewModel(application: Application) : AndroidViewModel(applica
                 latency = it.latency.copy(lastAsrMs = asrLatencyMs),
             )
         }
-        mapAndEnqueue(remaining)
+        viewModelScope.launch { mapAndEnqueue(remaining) }
     }
 
-    private fun mapAndEnqueue(words: List<String>) {
+    private suspend fun mapAndEnqueue(words: List<String>) {
         if (words.isEmpty()) return
+        val phrase = words.joinToString(" ")
+        val translated = translator.toEnglish(phrase, _ui.value.language)
+        if (translated.translated || translated.detectedLanguageTag != "en") {
+            lastDetectedAsrLanguage = AsrLanguage.fromBcp47(translated.detectedLanguageTag)
+            _ui.update { s ->
+                val engLine = translated.englishText
+                s.copy(
+                    englishTranscript = listOf(s.englishTranscript, engLine)
+                        .filter { it.isNotBlank() }
+                        .joinToString(" "),
+                    detectedLanguageLabel = languageDisplayName(translated.detectedLanguageTag),
+                    bootstrapMessage = if (translated.translated) {
+                        "Detected ${languageDisplayName(translated.detectedLanguageTag)} → English → ISL"
+                    } else {
+                        s.bootstrapMessage
+                    },
+                )
+            }
+        }
+        val englishWords = translated.englishText
+            .trim()
+            .split(Regex("\\s+"))
+            .filter { it.isNotBlank() }
         val requireVideo = _ui.value.signOutputMode == SignOutputMode.VIDEO
         val t0 = android.os.SystemClock.elapsedRealtime()
-        val glosses: List<Gloss> = pipeline.processCommittedWords(words, requireVideo)
+        val glosses: List<Gloss> = pipeline.processCommittedWords(englishWords, requireVideo)
         val mapMs = android.os.SystemClock.elapsedRealtime() - t0
         val skipped = pipeline.lastSkippedWords
         _ui.update { s ->
@@ -470,6 +528,11 @@ class ConversationViewModel(application: Application) : AndroidViewModel(applica
         }
     }
 
+    private fun languageDisplayName(bcp47: String): String =
+        AsrLanguage.fromBcp47(bcp47).displayName.let {
+            if (bcp47 == "en") "English" else it
+        }.ifBlank { bcp47 }
+
     fun playSuggestedWord(word: String) {
         viewModelScope.launch {
             mapAndEnqueue(listOf(word))
@@ -486,6 +549,7 @@ class ConversationViewModel(application: Application) : AndroidViewModel(applica
     override fun onCleared() {
         asr.release()
         signHub.release()
+        translator.close()
         super.onCleared()
     }
 }

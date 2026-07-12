@@ -70,6 +70,11 @@ class SignRendererHub(
         rendererFor(_mode.value).enqueue(glosses)
     }
 
+    fun setPlaybackSpeed(speed: Float) {
+        preferences.playbackSpeed = speed
+        videoRenderer.setPlaybackSpeed(speed)
+    }
+
     fun interrupt() {
         videoRenderer.interrupt()
         avatarRenderer.interrupt()
@@ -81,4 +86,8 @@ class SignRendererHub(
     }
 
     fun exoPlayer() = videoRenderer.exoPlayer()
+
+    init {
+        videoRenderer.setPlaybackSpeed(preferences.playbackSpeed)
+    }
 }

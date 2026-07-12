@@ -32,6 +32,7 @@ import com.liveisl.app.sign.AvatarCharacter
 import com.liveisl.app.sign.CislrPackDefaults
 import com.liveisl.app.sign.CislrPackStatus
 import com.liveisl.app.sign.SignOutputMode
+import com.liveisl.app.sign.SignPreferences
 import com.liveisl.app.sign.VideoSource
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -42,12 +43,14 @@ fun SettingsSheet(
     currentVideoSource: VideoSource,
     cislrStatus: CislrPackStatus,
     cislrPackUrl: String,
+    playbackSpeed: Float,
     onModeSelected: (SignOutputMode) -> Unit,
     onCharacterSelected: (AvatarCharacter) -> Unit,
     onVideoSourceSelected: (VideoSource) -> Unit,
     onCislrPackUrlChange: (String) -> Unit,
     onDownloadCislr: () -> Unit,
     onRefreshCislr: () -> Unit,
+    onPlaybackSpeedSelected: (Float) -> Unit,
     onDismiss: () -> Unit,
 ) {
     val sheetState = rememberModalBottomSheetState(skipPartiallyExpanded = true)
@@ -82,6 +85,28 @@ fun SettingsSheet(
             }
 
             if (currentMode == SignOutputMode.VIDEO) {
+                Spacer(modifier = Modifier.height(20.dp))
+                SectionLabel("Playback speed")
+                Text(
+                    text = "Slow down or speed up ISL video clips",
+                    style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                )
+                Spacer(modifier = Modifier.height(8.dp))
+                SignPreferences.PLAYBACK_SPEED_OPTIONS.forEach { speed ->
+                    val label = if (speed == 1f) "1× (normal)" else "${speed}×"
+                    SettingsRadioRow(
+                        selected = kotlin.math.abs(playbackSpeed - speed) < 0.01f,
+                        title = label,
+                        subtitle = when {
+                            speed < 1f -> "Slower — easier to follow"
+                            speed > 1f -> "Faster signing"
+                            else -> "Default pace"
+                        },
+                        onClick = { onPlaybackSpeedSelected(speed) },
+                    )
+                }
+
                 Spacer(modifier = Modifier.height(20.dp))
                 SectionLabel("Video source")
                 Text(

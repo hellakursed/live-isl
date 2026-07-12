@@ -16,8 +16,11 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.heightIn
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
@@ -36,6 +39,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -60,6 +64,7 @@ import com.liveisl.app.session.ConversationViewModel
 import com.liveisl.app.session.LatencyStats
 import com.liveisl.app.sign.AvatarCharacter
 import com.liveisl.app.sign.SignOutputMode
+import com.liveisl.app.sign.SignPreferences
 import com.liveisl.app.ui.avatar.Avatar3DStage
 import com.liveisl.app.ui.avatar.GlbAvatarStage
 import com.liveisl.app.ui.phase2.Phase2CameraStub
@@ -80,12 +85,14 @@ fun ConversationScreen(
             currentVideoSource = state.videoSource,
             cislrStatus = state.cislrStatus,
             cislrPackUrl = state.cislrPackUrl,
+            playbackSpeed = state.playbackSpeed,
             onModeSelected = vm::setSignOutputMode,
             onCharacterSelected = vm::setAvatarCharacter,
             onVideoSourceSelected = vm::setVideoSource,
             onCislrPackUrlChange = vm::setCislrPackUrl,
             onDownloadCislr = vm::downloadCislrPack,
             onRefreshCislr = vm::refreshCislrStatus,
+            onPlaybackSpeedSelected = vm::setPlaybackSpeed,
             onDismiss = vm::dismissSettings,
         )
     }
@@ -141,6 +148,13 @@ fun ConversationScreen(
                 isShowingVideo = state.isShowingVideo,
                 missingVideoLabel = state.fallbackSignLabel,
                 glossStrip = state.glossStrip,
+                playbackSpeed = state.playbackSpeed,
+                onPlaybackSpeedCycle = {
+                    val options = SignPreferences.PLAYBACK_SPEED_OPTIONS
+                    val idx = options.indexOfFirst { kotlin.math.abs(it - state.playbackSpeed) < 0.01f }
+                    val next = options[(idx.coerceAtLeast(0) + 1) % options.size]
+                    vm.setPlaybackSpeed(next)
+                },
             )
         }
 
@@ -172,6 +186,8 @@ fun ConversationScreen(
         TranscriptPane(
             partial = state.partialText,
             committed = state.committedText,
+            englishTranscript = state.englishTranscript,
+            detectedLanguage = state.detectedLanguageLabel,
             engine = state.engineLabel,
             bootstrap = state.bootstrapMessage,
         )
@@ -289,11 +305,7 @@ private fun RoleAndLanguageRow(
             colors = chipColors(selected = true),
         )
         AssistChip(
-            onClick = {
-                onLanguage(
-                    if (language == AsrLanguage.ENGLISH) AsrLanguage.HINDI else AsrLanguage.ENGLISH,
-                )
-            },
+            onClick = { onLanguage(language.next()) },
             label = { Text(language.displayName) },
             colors = chipColors(selected = true),
         )
@@ -339,6 +351,8 @@ private fun SignStage(
     isShowingVideo: Boolean,
     missingVideoLabel: String?,
     glossStrip: List<String>,
+    playbackSpeed: Float,
+    onPlaybackSpeedCycle: () -> Unit,
 ) {
     Column(modifier = modifier) {
         when (mode) {
@@ -386,6 +400,22 @@ private fun SignStage(
                         },
                         update = { it.player = player },
                         modifier = Modifier.fillMaxSize(),
+                    )
+
+                    AssistChip(
+                        onClick = onPlaybackSpeedCycle,
+                        modifier = Modifier
+                            .align(Alignment.TopEnd)
+                            .padding(10.dp),
+                        label = {
+                            Text(
+                                if (playbackSpeed == 1f) "1×" else "${playbackSpeed}×",
+                            )
+                        },
+                        colors = chipColors(selected = true),
+                        leadingIcon = {
+                            Icon(Icons.Default.Speed, null, Modifier.size(16.dp))
+                        },
                     )
 
                     if (!isShowingVideo && missingVideoLabel != null) {
@@ -451,25 +481,87 @@ private fun SignStage(
 private fun TranscriptPane(
     partial: String,
     committed: String,
+    englishTranscript: String,
+    detectedLanguage: String,
     engine: String,
     bootstrap: String,
 ) {
+    val listState = rememberLazyListState()
+    val lines = buildList {
+        if (committed.isNotBlank()) add(committed)
+        if (englishTranscript.isNotBlank() && englishTranscript != committed) {
+            add("→ $englishTranscript")
+        }
+        if (partial.isNotBlank()) add(partial)
+    }
+    LaunchedEffect(lines.size, lines.lastOrNull(), bootstrap) {
+        if (lines.isNotEmpty()) {
+            listState.animateScrollToItem(lines.lastIndex)
+        }
+    }
+
     Column(
         modifier = Modifier
             .fillMaxWidth()
+            .height(148.dp)
             .clip(RoundedCornerShape(16.dp))
             .background(MaterialTheme.colorScheme.surface.copy(alpha = 0.85f))
             .padding(14.dp),
     ) {
-        Text(text = "Transcript", style = MaterialTheme.typography.labelLarge)
-        Spacer(modifier = Modifier.height(6.dp))
-        Text(text = committed.ifBlank { "-" }, style = MaterialTheme.typography.bodyLarge)
-        if (partial.isNotBlank()) {
-            Text(text = partial, style = MaterialTheme.typography.bodyLarge, color = MaterialTheme.colorScheme.secondary)
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically,
+        ) {
+            Text(text = "Transcript", style = MaterialTheme.typography.labelLarge)
+            if (detectedLanguage.isNotBlank()) {
+                Text(
+                    text = detectedLanguage,
+                    style = MaterialTheme.typography.labelLarge,
+                    color = MaterialTheme.colorScheme.secondary,
+                )
+            }
         }
-        Spacer(modifier = Modifier.height(8.dp))
-        Text(text = engine, style = MaterialTheme.typography.bodyMedium)
-        Text(text = bootstrap, style = MaterialTheme.typography.bodyMedium)
+        Spacer(modifier = Modifier.height(6.dp))
+        LazyColumn(
+            state = listState,
+            modifier = Modifier
+                .weight(1f)
+                .fillMaxWidth(),
+            verticalArrangement = Arrangement.spacedBy(4.dp),
+        ) {
+            if (lines.isEmpty()) {
+                item {
+                    Text(text = "-", style = MaterialTheme.typography.bodyLarge)
+                }
+            } else {
+                items(lines.size) { idx ->
+                    val line = lines[idx]
+                    val isPartial = partial.isNotBlank() && idx == lines.lastIndex && line == partial
+                    val isEnglish = line.startsWith("→ ")
+                    Text(
+                        text = line,
+                        style = MaterialTheme.typography.bodyLarge,
+                        color = when {
+                            isPartial -> MaterialTheme.colorScheme.secondary
+                            isEnglish -> MaterialTheme.colorScheme.primary
+                            else -> MaterialTheme.colorScheme.onSurface
+                        },
+                    )
+                }
+            }
+        }
+        Spacer(modifier = Modifier.height(4.dp))
+        Text(
+            text = engine,
+            style = MaterialTheme.typography.bodyMedium,
+            maxLines = 1,
+        )
+        Text(
+            text = bootstrap,
+            style = MaterialTheme.typography.bodyMedium,
+            maxLines = 2,
+        )
     }
 }
 

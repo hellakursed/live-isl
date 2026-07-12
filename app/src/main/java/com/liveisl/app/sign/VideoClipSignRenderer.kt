@@ -7,6 +7,7 @@ import android.util.Log
 import androidx.core.net.toUri
 import androidx.media3.common.MediaItem
 import androidx.media3.common.PlaybackException
+import androidx.media3.common.PlaybackParameters
 import androidx.media3.common.Player
 import androidx.media3.exoplayer.ExoPlayer
 import com.liveisl.app.data.Gloss
@@ -29,6 +30,7 @@ class VideoClipSignRenderer(
     private val _isPlaying = MutableStateFlow(false)
     private val _fallbackLabel = MutableStateFlow<String?>(null)
     private val _isShowingVideo = MutableStateFlow(false)
+    private val _playbackSpeed = MutableStateFlow(1f)
 
     override val currentGloss: StateFlow<Gloss?> = _currentGloss.asStateFlow()
     override val queueDepth: StateFlow<Int> = _queueDepth.asStateFlow()
@@ -36,6 +38,7 @@ class VideoClipSignRenderer(
     override val isPlaying: StateFlow<Boolean> = _isPlaying.asStateFlow()
     val fallbackLabel: StateFlow<String?> = _fallbackLabel.asStateFlow()
     val isShowingVideo: StateFlow<Boolean> = _isShowingVideo.asStateFlow()
+    val playbackSpeed: StateFlow<Float> = _playbackSpeed.asStateFlow()
 
     /** Exposed for Compose PlayerView binding. */
     fun exoPlayer(): ExoPlayer = player
@@ -65,6 +68,12 @@ class VideoClipSignRenderer(
     init {
         player.addListener(listener)
         player.repeatMode = Player.REPEAT_MODE_OFF
+    }
+
+    fun setPlaybackSpeed(speed: Float) {
+        val clamped = speed.coerceIn(0.5f, 2f)
+        _playbackSpeed.value = clamped
+        player.playbackParameters = PlaybackParameters(clamped)
     }
 
     override fun play(glosses: List<Gloss>) {
@@ -138,6 +147,7 @@ class VideoClipSignRenderer(
             _isShowingVideo.value = true
             player.setMediaItem(MediaItem.fromUri(uri))
             player.prepare()
+            player.playbackParameters = PlaybackParameters(_playbackSpeed.value)
             player.playWhenReady = true
         } catch (e: Exception) {
             Log.e(TAG, "Failed to start clip $path", e)

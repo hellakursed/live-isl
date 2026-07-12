@@ -37,16 +37,6 @@ object StreamingAsrFactory {
     }
 }
 
-/**
- * Sherpa-ONNX binding placeholder: loads when model files exist under filesDir/asr.
- * Full native AAR can be dropped in later; for now streams via a lightweight
- * file-backed status and falls through to throwing if invoked without JNI — the
- * factory only constructs this when models exist AND we attempt graceful degrade.
- *
- * Until the native sherpa-onnx AAR is linked, this class uses Android speech under
- * the hood but reports engine as SHERPA-ready path for bootstrap telemetry, and
- * documents the expected model layout.
- */
 class SherpaStreamingAsr(
     context: Context,
     private val modelsDir: File,
@@ -56,6 +46,10 @@ class SherpaStreamingAsr(
         "Sherpa-ONNX models @ ${modelsDir.name} (JNI pending — using speech bridge)"
 }
 
+/**
+ * Continuous Android SpeechRecognizer — same restart behavior as before the
+ * debounce / silence-timeout / cancel-before-restart / online-fallback experiments.
+ */
 class AndroidSpeechStreamingAsr(
     private val context: Context,
 ) : StreamingAsr {
@@ -130,7 +124,7 @@ class AndroidSpeechStreamingAsr(
     }
 
     override suspend fun start(language: AsrLanguage) {
-        this.language = language
+        this.language = if (language == AsrLanguage.AUTO) AsrLanguage.ENGLISH else language
         shouldRestart = true
         if (!SpeechRecognizer.isRecognitionAvailable(context)) {
             _partials.emit(
@@ -206,12 +200,19 @@ class MockStreamingAsr : StreamingAsr {
         stop()
         _listening.value = true
         job = scope.launch {
-            val phrase = if (language == AsrLanguage.HINDI) {
-                listOf("नमस्ते", "नमस्ते आप", "नमस्ते आप कैसे", "नमस्ते आप कैसे हैं")
-            } else {
-                listOf("hello", "hello how", "hello how are", "hello how are you")
+            val phrase = when (language) {
+                AsrLanguage.HINDI ->
+                    listOf("नमस्ते", "नमस्ते आप", "नमस्ते आप कैसे", "नमस्ते आप कैसे हैं")
+                AsrLanguage.TAMIL ->
+                    listOf("வணக்கம்", "வணக்கம் நீங்கள்", "வணக்கம் நீங்கள் எப்படி")
+                AsrLanguage.KANNADA ->
+                    listOf("ನಮಸ್ಕಾರ", "ನಮಸ್ಕಾರ ನೀವು", "ನಮಸ್ಕಾರ ನೀವು ಹೇಗಿದ್ದೀರಿ")
+                AsrLanguage.BENGALI ->
+                    listOf("নমস্কার", "নমস্কার আপনি", "নমস্কার আপনি কেমন আছেন")
+                AsrLanguage.ENGLISH, AsrLanguage.AUTO ->
+                    listOf("hello", "hello how", "hello how are", "hello how are you")
             }
-            var t0 = SystemClock.elapsedRealtime()
+            val t0 = SystemClock.elapsedRealtime()
             for ((i, p) in phrase.withIndex()) {
                 kotlinx.coroutines.delay(280)
                 _partials.emit(
