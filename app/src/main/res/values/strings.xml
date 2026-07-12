@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Live ISL</string>
+    <string name="conversation_title">Live Conversation</string>
+    <string name="hearing_speaks">You speak</string>
+    <string name="isl_signs">ISL signs</string>
+    <string name="mic_start">Start listening</string>
+    <string name="mic_stop">Stop</string>
+    <string name="phase2_stub">Sign with camera (coming soon)</string>
+    <string name="permission_mic">Microphone access is required for voice → ISL</string>
+    <string name="permission_camera">Camera access will be required for ISL → voice</string>
+    <string name="offline_ready">Running fully on-device</string>
+    <string name="models_missing">ASR models not found — using device speech engine</string>
+</resources>

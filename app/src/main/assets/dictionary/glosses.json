@@ -1,0 +1,2837 @@
+[
+  {
+    "glossId": "ABOVE",
+    "lemmas": [
+      "above"
+    ],
+    "hindi": [],
+    "videoPath": "videos/ABOVE.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "ACCEPT",
+    "lemmas": [
+      "accept",
+      "alright",
+      "ok",
+      "okay",
+      "sure",
+      "yeah",
+      "yep",
+      "yes"
+    ],
+    "hindi": [],
+    "videoPath": "videos/ACCEPT.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "ACCIDENT",
+    "lemmas": [
+      "accident"
+    ],
+    "hindi": [],
+    "videoPath": "videos/ACCIDENT.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "ACTION",
+    "lemmas": [
+      "action"
+    ],
+    "hindi": [],
+    "videoPath": "videos/ACTION.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "ADDRESS",
+    "lemmas": [
+      "address"
+    ],
+    "hindi": [],
+    "videoPath": "videos/ADDRESS.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "ADVICE",
+    "lemmas": [
+      "advice"
+    ],
+    "hindi": [],
+    "videoPath": "videos/ADVICE.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "AEROPLANE",
+    "lemmas": [
+      "aeroplane",
+      "airplane",
+      "flight",
+      "fly",
+      "plane"
+    ],
+    "hindi": [],
+    "videoPath": "videos/AEROPLANE.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "AFTER",
+    "lemmas": [
+      "after"
+    ],
+    "hindi": [],
+    "videoPath": "videos/AFTER.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "AIR",
+    "lemmas": [
+      "air"
+    ],
+    "hindi": [],
+    "videoPath": "videos/AIR.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "ALL",
+    "lemmas": [
+      "all"
+    ],
+    "hindi": [],
+    "videoPath": "videos/ALL.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "ALLOW",
+    "lemmas": [
+      "allow"
+    ],
+    "hindi": [],
+    "videoPath": "videos/ALLOW.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "ALWAYS",
+    "lemmas": [
+      "always"
+    ],
+    "hindi": [],
+    "videoPath": "videos/ALWAYS.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "AMBULANCE",
+    "lemmas": [
+      "ambulance"
+    ],
+    "hindi": [],
+    "videoPath": "videos/AMBULANCE.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "ANGRY",
+    "lemmas": [
+      "angry",
+      "mad"
+    ],
+    "hindi": [],
+    "videoPath": "videos/ANGRY.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "ANIMAL",
+    "lemmas": [
+      "animal"
+    ],
+    "hindi": [],
+    "videoPath": "videos/ANIMAL.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "APPLE",
+    "lemmas": [
+      "apple"
+    ],
+    "hindi": [],
+    "videoPath": "videos/APPLE.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "ARM",
+    "lemmas": [
+      "arm"
+    ],
+    "hindi": [],
+    "videoPath": "videos/ARM.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "ART",
+    "lemmas": [
+      "art"
+    ],
+    "hindi": [],
+    "videoPath": "videos/ART.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "AUTORICKSHAW",
+    "lemmas": [
+      "autorickshaw"
+    ],
+    "hindi": [],
+    "videoPath": "videos/AUTORICKSHAW.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "BABY",
+    "lemmas": [
+      "baby",
+      "child",
+      "kid",
+      "mom",
+      "mother",
+      "mummy"
+    ],
+    "hindi": [],
+    "videoPath": "videos/BABY.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "BALL",
+    "lemmas": [
+      "ball"
+    ],
+    "hindi": [],
+    "videoPath": "videos/BALL.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "BANANA",
+    "lemmas": [
+      "banana"
+    ],
+    "hindi": [],
+    "videoPath": "videos/BANANA.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "BANK",
+    "lemmas": [
+      "bank"
+    ],
+    "hindi": [],
+    "videoPath": "videos/BANK.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "BAT",
+    "lemmas": [
+      "bat"
+    ],
+    "hindi": [],
+    "videoPath": "videos/BAT.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "BATHROOM",
+    "lemmas": [
+      "bathroom"
+    ],
+    "hindi": [],
+    "videoPath": "videos/BATHROOM.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "BED",
+    "lemmas": [
+      "bed"
+    ],
+    "hindi": [],
+    "videoPath": "videos/BED.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "BEHIND",
+    "lemmas": [
+      "behind"
+    ],
+    "hindi": [],
+    "videoPath": "videos/BEHIND.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "BIG",
+    "lemmas": [
+      "big"
+    ],
+    "hindi": [],
+    "videoPath": "videos/BIG.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "BIRD",
+    "lemmas": [
+      "bird"
+    ],
+    "hindi": [],
+    "videoPath": "videos/BIRD.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "BIRTHDAY",
+    "lemmas": [
+      "birthday"
+    ],
+    "hindi": [],
+    "videoPath": "videos/BIRTHDAY.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "BLACK",
+    "lemmas": [
+      "black"
+    ],
+    "hindi": [],
+    "videoPath": "videos/BLACK.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "BREATHE",
+    "lemmas": [
+      "breathe"
+    ],
+    "hindi": [],
+    "videoPath": "videos/BREATHE.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "BUY",
+    "lemmas": [
+      "bought",
+      "buy",
+      "purchase",
+      "shop"
+    ],
+    "hindi": [],
+    "videoPath": "videos/BUY.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "CAKE",
+    "lemmas": [
+      "cake"
+    ],
+    "hindi": [],
+    "videoPath": "videos/CAKE.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "CALCULATOR",
+    "lemmas": [
+      "calculator"
+    ],
+    "hindi": [],
+    "videoPath": "videos/CALCULATOR.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "CALL",
+    "lemmas": [
+      "call",
+      "calling",
+      "mobile",
+      "phone",
+      "telephone"
+    ],
+    "hindi": [],
+    "videoPath": "videos/CALL.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "CAMERA",
+    "lemmas": [
+      "camera"
+    ],
+    "hindi": [],
+    "videoPath": "videos/CAMERA.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "CAR",
+    "lemmas": [
+      "car"
+    ],
+    "hindi": [],
+    "videoPath": "videos/CAR.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "CASH",
+    "lemmas": [
+      "cash",
+      "money"
+    ],
+    "hindi": [],
+    "videoPath": "videos/CASH.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "CAT",
+    "lemmas": [
+      "cat"
+    ],
+    "hindi": [],
+    "videoPath": "videos/CAT.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "CHOCOLATE",
+    "lemmas": [
+      "chocolate"
+    ],
+    "hindi": [],
+    "videoPath": "videos/CHOCOLATE.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "CLAP",
+    "lemmas": [
+      "clap"
+    ],
+    "hindi": [],
+    "videoPath": "videos/CLAP.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "CLOTH",
+    "lemmas": [
+      "cloth"
+    ],
+    "hindi": [],
+    "videoPath": "videos/CLOTH.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "COMPUTER",
+    "lemmas": [
+      "computer"
+    ],
+    "hindi": [],
+    "videoPath": "videos/COMPUTER.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "CRICKET",
+    "lemmas": [
+      "cricket"
+    ],
+    "hindi": [],
+    "videoPath": "videos/CRICKET.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "CRY",
+    "lemmas": [
+      "cry"
+    ],
+    "hindi": [],
+    "videoPath": "videos/CRY.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "DANCE",
+    "lemmas": [
+      "dance"
+    ],
+    "hindi": [],
+    "videoPath": "videos/DANCE.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "DATE",
+    "lemmas": [
+      "date",
+      "day",
+      "today"
+    ],
+    "hindi": [],
+    "videoPath": "videos/DATE.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "DEAF",
+    "lemmas": [
+      "deaf"
+    ],
+    "hindi": [],
+    "videoPath": "videos/DEAF.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "DIESEL",
+    "lemmas": [
+      "diesel"
+    ],
+    "hindi": [],
+    "videoPath": "videos/DIESEL.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "DISCOUNT",
+    "lemmas": [
+      "discount"
+    ],
+    "hindi": [],
+    "videoPath": "videos/DISCOUNT.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "DIWALI",
+    "lemmas": [
+      "diwali"
+    ],
+    "hindi": [],
+    "videoPath": "videos/DIWALI.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "DOG",
+    "lemmas": [
+      "dog"
+    ],
+    "hindi": [],
+    "videoPath": "videos/DOG.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "DRINK",
+    "lemmas": [
+      "coffee",
+      "drink",
+      "milk",
+      "tea",
+      "thirsty",
+      "water"
+    ],
+    "hindi": [
+      "चाय",
+      "पानी"
+    ],
+    "videoPath": "videos/DRINK.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "EDUCATION",
+    "lemmas": [
+      "college",
+      "education",
+      "school"
+    ],
+    "hindi": [],
+    "videoPath": "videos/EDUCATION.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "EGG",
+    "lemmas": [
+      "egg"
+    ],
+    "hindi": [],
+    "videoPath": "videos/EGG.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "ELEPHANT",
+    "lemmas": [
+      "elephant"
+    ],
+    "hindi": [],
+    "videoPath": "videos/ELEPHANT.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "ENJOY",
+    "lemmas": [
+      "enjoy",
+      "fun",
+      "glad",
+      "happy"
+    ],
+    "hindi": [],
+    "videoPath": "videos/ENJOY.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "ERASER",
+    "lemmas": [
+      "eraser"
+    ],
+    "hindi": [],
+    "videoPath": "videos/ERASER.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "EXERCISE",
+    "lemmas": [
+      "exercise",
+      "run",
+      "running",
+      "sport"
+    ],
+    "hindi": [],
+    "videoPath": "videos/EXERCISE.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "EYE",
+    "lemmas": [
+      "eye",
+      "look",
+      "see",
+      "watch",
+      "watching"
+    ],
+    "hindi": [],
+    "videoPath": "videos/EYE.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "FACE",
+    "lemmas": [
+      "face"
+    ],
+    "hindi": [],
+    "videoPath": "videos/FACE.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "FAN",
+    "lemmas": [
+      "fan"
+    ],
+    "hindi": [],
+    "videoPath": "videos/FAN.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "FESTIVAL",
+    "lemmas": [
+      "festival"
+    ],
+    "hindi": [],
+    "videoPath": "videos/FESTIVAL.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "FILM",
+    "lemmas": [
+      "film",
+      "movie",
+      "watch"
+    ],
+    "hindi": [],
+    "videoPath": "videos/FILM.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "FIRE",
+    "lemmas": [
+      "fire"
+    ],
+    "hindi": [],
+    "videoPath": "videos/FIRE.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "FISH",
+    "lemmas": [
+      "fish"
+    ],
+    "hindi": [],
+    "videoPath": "videos/FISH.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "FOOTBALL",
+    "lemmas": [
+      "football",
+      "soccer"
+    ],
+    "hindi": [],
+    "videoPath": "videos/FOOTBALL.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "FREE",
+    "lemmas": [
+      "free"
+    ],
+    "hindi": [],
+    "videoPath": "videos/FREE.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "FRIEND",
+    "lemmas": [
+      "friend",
+      "friends"
+    ],
+    "hindi": [
+      "दोस्त"
+    ],
+    "videoPath": "videos/FRIEND.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "FRUITS",
+    "lemmas": [
+      "apple",
+      "banana",
+      "food",
+      "fruit",
+      "fruits"
+    ],
+    "hindi": [],
+    "videoPath": "videos/FRUITS.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "GAMES",
+    "lemmas": [
+      "game",
+      "games",
+      "play"
+    ],
+    "hindi": [],
+    "videoPath": "videos/GAMES.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "GANAPATHI",
+    "lemmas": [
+      "ganapathi"
+    ],
+    "hindi": [],
+    "videoPath": "videos/GANAPATHI.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "GIRL",
+    "lemmas": [
+      "female",
+      "girl",
+      "woman",
+      "women"
+    ],
+    "hindi": [],
+    "videoPath": "videos/GIRL.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "GIVE",
+    "lemmas": [
+      "gave",
+      "give",
+      "giving"
+    ],
+    "hindi": [],
+    "videoPath": "videos/GIVE.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "GLASS",
+    "lemmas": [
+      "glass"
+    ],
+    "hindi": [],
+    "videoPath": "videos/GLASS.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "GREEN",
+    "lemmas": [
+      "green"
+    ],
+    "hindi": [],
+    "videoPath": "videos/GREEN.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "HEALTH",
+    "lemmas": [
+      "health",
+      "healthy"
+    ],
+    "hindi": [],
+    "videoPath": "videos/HEALTH.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "HEAR",
+    "lemmas": [
+      "hear",
+      "listen",
+      "listening"
+    ],
+    "hindi": [],
+    "videoPath": "videos/HEAR.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "HEART",
+    "lemmas": [
+      "heart"
+    ],
+    "hindi": [],
+    "videoPath": "videos/HEART.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "HEAT",
+    "lemmas": [
+      "heat",
+      "hot",
+      "warm"
+    ],
+    "hindi": [],
+    "videoPath": "videos/HEAT.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "HEAVY",
+    "lemmas": [
+      "heavy"
+    ],
+    "hindi": [],
+    "videoPath": "videos/HEAVY.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "HELICOPTER",
+    "lemmas": [
+      "helicopter"
+    ],
+    "hindi": [],
+    "videoPath": "videos/HELICOPTER.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "HELP",
+    "lemmas": [
+      "assist",
+      "help",
+      "helping"
+    ],
+    "hindi": [
+      "मदद"
+    ],
+    "videoPath": "videos/HELP.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "HER",
+    "lemmas": [
+      "her"
+    ],
+    "hindi": [],
+    "videoPath": "videos/HER.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "HIDE",
+    "lemmas": [
+      "hide"
+    ],
+    "hindi": [],
+    "videoPath": "videos/HIDE.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "HIGH",
+    "lemmas": [
+      "high"
+    ],
+    "hindi": [],
+    "videoPath": "videos/HIGH.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "HIM",
+    "lemmas": [
+      "him"
+    ],
+    "hindi": [],
+    "videoPath": "videos/HIM.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "HINDI",
+    "lemmas": [
+      "english",
+      "hindi",
+      "language"
+    ],
+    "hindi": [
+      "हिंदी",
+      "हिन्दी"
+    ],
+    "videoPath": "videos/HINDI.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "HIS",
+    "lemmas": [
+      "his"
+    ],
+    "hindi": [],
+    "videoPath": "videos/HIS.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "HOLD",
+    "lemmas": [
+      "hold"
+    ],
+    "hindi": [],
+    "videoPath": "videos/HOLD.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "HOME",
+    "lemmas": [
+      "home",
+      "house"
+    ],
+    "hindi": [
+      "घर"
+    ],
+    "videoPath": "videos/HOME.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "HORSE",
+    "lemmas": [
+      "horse"
+    ],
+    "hindi": [],
+    "videoPath": "videos/HORSE.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "HOSPITAL",
+    "lemmas": [
+      "clinic",
+      "doctor",
+      "hospital",
+      "ill",
+      "sick"
+    ],
+    "hindi": [],
+    "videoPath": "videos/HOSPITAL.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "HOW",
+    "lemmas": [
+      "how"
+    ],
+    "hindi": [
+      "कैसा",
+      "कैसी",
+      "कैसे"
+    ],
+    "videoPath": "videos/HOW.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "HUNGRY",
+    "lemmas": [
+      "hungry"
+    ],
+    "hindi": [],
+    "videoPath": "videos/HUNGRY.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "HUSBAND",
+    "lemmas": [
+      "husband",
+      "spouse",
+      "wife"
+    ],
+    "hindi": [],
+    "videoPath": "videos/HUSBAND.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "I",
+    "lemmas": [
+      "i",
+      "me",
+      "my"
+    ],
+    "hindi": [
+      "मुझे",
+      "मैं"
+    ],
+    "videoPath": "videos/I.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "ICE-CREAM",
+    "lemmas": [
+      "ice cream",
+      "ice-cream"
+    ],
+    "hindi": [],
+    "videoPath": "videos/ICE-CREAM.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "IDENTIFICATION",
+    "lemmas": [
+      "identification"
+    ],
+    "hindi": [],
+    "videoPath": "videos/IDENTIFICATION.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "ILLEGAL",
+    "lemmas": [
+      "illegal"
+    ],
+    "hindi": [],
+    "videoPath": "videos/ILLEGAL.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "IMMEDIATE",
+    "lemmas": [
+      "immediate"
+    ],
+    "hindi": [],
+    "videoPath": "videos/IMMEDIATE.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "IMPORT",
+    "lemmas": [
+      "import"
+    ],
+    "hindi": [],
+    "videoPath": "videos/IMPORT.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "IMPORTANT",
+    "lemmas": [
+      "important"
+    ],
+    "hindi": [],
+    "videoPath": "videos/IMPORTANT.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "IMPROVE",
+    "lemmas": [
+      "improve"
+    ],
+    "hindi": [],
+    "videoPath": "videos/IMPROVE.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "IN",
+    "lemmas": [
+      "in"
+    ],
+    "hindi": [],
+    "videoPath": "videos/IN.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "INCOME",
+    "lemmas": [
+      "income"
+    ],
+    "hindi": [],
+    "videoPath": "videos/INCOME.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "INCREASE",
+    "lemmas": [
+      "increase"
+    ],
+    "hindi": [],
+    "videoPath": "videos/INCREASE.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "INDEPENDENT",
+    "lemmas": [
+      "independent"
+    ],
+    "hindi": [],
+    "videoPath": "videos/INDEPENDENT.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "INDIA",
+    "lemmas": [
+      "bharat",
+      "india",
+      "indian"
+    ],
+    "hindi": [
+      "भारत"
+    ],
+    "videoPath": "videos/INDIA.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "INFORMATION",
+    "lemmas": [
+      "information"
+    ],
+    "hindi": [],
+    "videoPath": "videos/INFORMATION.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "INJECTION",
+    "lemmas": [
+      "injection"
+    ],
+    "hindi": [],
+    "videoPath": "videos/INJECTION.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "INPUT",
+    "lemmas": [
+      "input"
+    ],
+    "hindi": [],
+    "videoPath": "videos/INPUT.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "INSTALLATION",
+    "lemmas": [
+      "installation"
+    ],
+    "hindi": [],
+    "videoPath": "videos/INSTALLATION.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "INSULT",
+    "lemmas": [
+      "insult"
+    ],
+    "hindi": [],
+    "videoPath": "videos/INSULT.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "INTEREST",
+    "lemmas": [
+      "interest"
+    ],
+    "hindi": [],
+    "videoPath": "videos/INTEREST.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "INTRODUCE",
+    "lemmas": [
+      "introduce"
+    ],
+    "hindi": [],
+    "videoPath": "videos/INTRODUCE.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "IRON",
+    "lemmas": [
+      "iron"
+    ],
+    "hindi": [],
+    "videoPath": "videos/IRON.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "ITEM",
+    "lemmas": [
+      "item"
+    ],
+    "hindi": [],
+    "videoPath": "videos/ITEM.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "ITS",
+    "lemmas": [
+      "its"
+    ],
+    "hindi": [],
+    "videoPath": "videos/ITS.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "JAIL",
+    "lemmas": [
+      "jail"
+    ],
+    "hindi": [],
+    "videoPath": "videos/JAIL.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "JEALOUS",
+    "lemmas": [
+      "jealous"
+    ],
+    "hindi": [],
+    "videoPath": "videos/JEALOUS.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "JOB",
+    "lemmas": [
+      "job",
+      "office",
+      "work",
+      "working"
+    ],
+    "hindi": [],
+    "videoPath": "videos/JOB.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "JOIN",
+    "lemmas": [
+      "join"
+    ],
+    "hindi": [],
+    "videoPath": "videos/JOIN.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "JUICE",
+    "lemmas": [
+      "drink",
+      "juice"
+    ],
+    "hindi": [],
+    "videoPath": "videos/JUICE.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "JUMP",
+    "lemmas": [
+      "jump",
+      "run"
+    ],
+    "hindi": [],
+    "videoPath": "videos/JUMP.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "JUNE",
+    "lemmas": [
+      "june"
+    ],
+    "hindi": [],
+    "videoPath": "videos/JUNE.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "JUNIOR",
+    "lemmas": [
+      "junior"
+    ],
+    "hindi": [],
+    "videoPath": "videos/JUNIOR.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "JUSTICE",
+    "lemmas": [
+      "justice"
+    ],
+    "hindi": [],
+    "videoPath": "videos/JUSTICE.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "KANPUR",
+    "lemmas": [
+      "kanpur"
+    ],
+    "hindi": [],
+    "videoPath": "videos/KANPUR.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "KEEP",
+    "lemmas": [
+      "keep"
+    ],
+    "hindi": [],
+    "videoPath": "videos/KEEP.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "KEY",
+    "lemmas": [
+      "key"
+    ],
+    "hindi": [],
+    "videoPath": "videos/KEY.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "KICK",
+    "lemmas": [
+      "kick"
+    ],
+    "hindi": [],
+    "videoPath": "videos/KICK.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "KILL",
+    "lemmas": [
+      "kill"
+    ],
+    "hindi": [],
+    "videoPath": "videos/KILL.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "KING",
+    "lemmas": [
+      "king"
+    ],
+    "hindi": [],
+    "videoPath": "videos/KING.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "KISS",
+    "lemmas": [
+      "kiss"
+    ],
+    "hindi": [],
+    "videoPath": "videos/KISS.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "KITE",
+    "lemmas": [
+      "kite"
+    ],
+    "hindi": [],
+    "videoPath": "videos/KITE.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "KNOW",
+    "lemmas": [
+      "know",
+      "knowing",
+      "understand",
+      "understanding"
+    ],
+    "hindi": [],
+    "videoPath": "videos/KNOW.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "KNOWLEDGE",
+    "lemmas": [
+      "knowledge"
+    ],
+    "hindi": [],
+    "videoPath": "videos/KNOWLEDGE.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "LABOUR",
+    "lemmas": [
+      "labour",
+      "work"
+    ],
+    "hindi": [],
+    "videoPath": "videos/LABOUR.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "LAND",
+    "lemmas": [
+      "land"
+    ],
+    "hindi": [],
+    "videoPath": "videos/LAND.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "LATE",
+    "lemmas": [
+      "late"
+    ],
+    "hindi": [],
+    "videoPath": "videos/LATE.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "LAUGH",
+    "lemmas": [
+      "laugh"
+    ],
+    "hindi": [],
+    "videoPath": "videos/LAUGH.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "LAZY",
+    "lemmas": [
+      "lazy"
+    ],
+    "hindi": [],
+    "videoPath": "videos/LAZY.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "LEARN",
+    "lemmas": [
+      "learn",
+      "learning",
+      "study"
+    ],
+    "hindi": [],
+    "videoPath": "videos/LEARN.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "LEAVE",
+    "lemmas": [
+      "bye",
+      "byebye",
+      "goodbye",
+      "leave"
+    ],
+    "hindi": [],
+    "videoPath": "videos/LEAVE.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "LEFT",
+    "lemmas": [
+      "left"
+    ],
+    "hindi": [],
+    "videoPath": "videos/LEFT.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "LEG",
+    "lemmas": [
+      "leg"
+    ],
+    "hindi": [],
+    "videoPath": "videos/LEG.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "LESS",
+    "lemmas": [
+      "less"
+    ],
+    "hindi": [],
+    "videoPath": "videos/LESS.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "LETTER",
+    "lemmas": [
+      "letter",
+      "write",
+      "writing"
+    ],
+    "hindi": [],
+    "videoPath": "videos/LETTER.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "LEVEL",
+    "lemmas": [
+      "level"
+    ],
+    "hindi": [],
+    "videoPath": "videos/LEVEL.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "LIBRARY",
+    "lemmas": [
+      "library"
+    ],
+    "hindi": [],
+    "videoPath": "videos/LIBRARY.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "LIGHT",
+    "lemmas": [
+      "light"
+    ],
+    "hindi": [],
+    "videoPath": "videos/LIGHT.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "LIKE",
+    "lemmas": [
+      "like",
+      "likes"
+    ],
+    "hindi": [],
+    "videoPath": "videos/LIKE.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "LIPS",
+    "lemmas": [
+      "lips"
+    ],
+    "hindi": [],
+    "videoPath": "videos/LIPS.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "LIQUID",
+    "lemmas": [
+      "liquid"
+    ],
+    "hindi": [],
+    "videoPath": "videos/LIQUID.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "LIST",
+    "lemmas": [
+      "list"
+    ],
+    "hindi": [],
+    "videoPath": "videos/LIST.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "LITRE",
+    "lemmas": [
+      "litre"
+    ],
+    "hindi": [],
+    "videoPath": "videos/LITRE.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "LITTLE",
+    "lemmas": [
+      "little"
+    ],
+    "hindi": [],
+    "videoPath": "videos/LITTLE.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "LOCAL",
+    "lemmas": [
+      "local"
+    ],
+    "hindi": [],
+    "videoPath": "videos/LOCAL.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "LOCK",
+    "lemmas": [
+      "lock"
+    ],
+    "hindi": [],
+    "videoPath": "videos/LOCK.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "LONG",
+    "lemmas": [
+      "long"
+    ],
+    "hindi": [],
+    "videoPath": "videos/LONG.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "LONGITUDE",
+    "lemmas": [
+      "longitude"
+    ],
+    "hindi": [],
+    "videoPath": "videos/LONGITUDE.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "LOOSE",
+    "lemmas": [
+      "loose"
+    ],
+    "hindi": [],
+    "videoPath": "videos/LOOSE.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "LOSE",
+    "lemmas": [
+      "lose"
+    ],
+    "hindi": [],
+    "videoPath": "videos/LOSE.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "LOUD",
+    "lemmas": [
+      "loud"
+    ],
+    "hindi": [],
+    "videoPath": "videos/LOUD.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "LOVE",
+    "lemmas": [
+      "love",
+      "loving"
+    ],
+    "hindi": [
+      "प्यार"
+    ],
+    "videoPath": "videos/LOVE.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "LUNCH",
+    "lemmas": [
+      "breakfast",
+      "dinner",
+      "eat",
+      "eating",
+      "food",
+      "hungry",
+      "lunch",
+      "meal"
+    ],
+    "hindi": [
+      "खाना"
+    ],
+    "videoPath": "videos/LUNCH.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "MAGIC",
+    "lemmas": [
+      "magic"
+    ],
+    "hindi": [],
+    "videoPath": "videos/MAGIC.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "MAGNET",
+    "lemmas": [
+      "magnet"
+    ],
+    "hindi": [],
+    "videoPath": "videos/MAGNET.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "MAIL",
+    "lemmas": [
+      "mail"
+    ],
+    "hindi": [],
+    "videoPath": "videos/MAIL.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "MAJOR",
+    "lemmas": [
+      "major"
+    ],
+    "hindi": [],
+    "videoPath": "videos/MAJOR.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "MAN",
+    "lemmas": [
+      "boy",
+      "dad",
+      "father",
+      "male",
+      "man",
+      "men",
+      "papa"
+    ],
+    "hindi": [],
+    "videoPath": "videos/MAN.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "MANGO",
+    "lemmas": [
+      "mango"
+    ],
+    "hindi": [],
+    "videoPath": "videos/MANGO.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "MARK",
+    "lemmas": [
+      "mark"
+    ],
+    "hindi": [],
+    "videoPath": "videos/MARK.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "MAXIMUM",
+    "lemmas": [
+      "maximum"
+    ],
+    "hindi": [],
+    "videoPath": "videos/MAXIMUM.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "ME",
+    "lemmas": [
+      "i",
+      "me",
+      "my"
+    ],
+    "hindi": [],
+    "videoPath": "videos/ME.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "MEET",
+    "lemmas": [
+      "greeting",
+      "greetings",
+      "hello",
+      "hey",
+      "hi",
+      "meet",
+      "namaste",
+      "welcome"
+    ],
+    "hindi": [
+      "नमस्कार",
+      "नमस्ते"
+    ],
+    "videoPath": "videos/MEET.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "MONEY",
+    "lemmas": [
+      "cash",
+      "cost",
+      "money",
+      "paid",
+      "pay",
+      "price",
+      "rupee"
+    ],
+    "hindi": [],
+    "videoPath": "videos/MONEY.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "MONTH",
+    "lemmas": [
+      "month"
+    ],
+    "hindi": [],
+    "videoPath": "videos/MONTH.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "MORE",
+    "lemmas": [
+      "more"
+    ],
+    "hindi": [],
+    "videoPath": "videos/MORE.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "MUSIC",
+    "lemmas": [
+      "music",
+      "sing",
+      "song"
+    ],
+    "hindi": [],
+    "videoPath": "videos/MUSIC.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "MYSELF",
+    "lemmas": [
+      "myself"
+    ],
+    "hindi": [],
+    "videoPath": "videos/MYSELF.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "NATURAL",
+    "lemmas": [
+      "natural"
+    ],
+    "hindi": [],
+    "videoPath": "videos/NATURAL.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "NECK",
+    "lemmas": [
+      "neck"
+    ],
+    "hindi": [],
+    "videoPath": "videos/NECK.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "NEED",
+    "lemmas": [
+      "need",
+      "needed",
+      "wanna",
+      "want",
+      "wants"
+    ],
+    "hindi": [
+      "चाहिए",
+      "जरूरत",
+      "ज़रूरत"
+    ],
+    "videoPath": "videos/NEED.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "NEIGHBOUR",
+    "lemmas": [
+      "neighbour"
+    ],
+    "hindi": [],
+    "videoPath": "videos/NEIGHBOUR.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "NEW",
+    "lemmas": [
+      "new"
+    ],
+    "hindi": [],
+    "videoPath": "videos/NEW.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "NEXT",
+    "lemmas": [
+      "next"
+    ],
+    "hindi": [],
+    "videoPath": "videos/NEXT.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "NIGHT",
+    "lemmas": [
+      "evening",
+      "night",
+      "tonight"
+    ],
+    "hindi": [],
+    "videoPath": "videos/NIGHT.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "NOON",
+    "lemmas": [
+      "afternoon",
+      "morning",
+      "noon"
+    ],
+    "hindi": [],
+    "videoPath": "videos/NOON.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "NOSE",
+    "lemmas": [
+      "nose"
+    ],
+    "hindi": [],
+    "videoPath": "videos/NOSE.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "NOTE",
+    "lemmas": [
+      "note"
+    ],
+    "hindi": [],
+    "videoPath": "videos/NOTE.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "NOTICE",
+    "lemmas": [
+      "notice"
+    ],
+    "hindi": [],
+    "videoPath": "videos/NOTICE.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "NOW",
+    "lemmas": [
+      "currently",
+      "now",
+      "today"
+    ],
+    "hindi": [],
+    "videoPath": "videos/NOW.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "OBJECT",
+    "lemmas": [
+      "object"
+    ],
+    "hindi": [],
+    "videoPath": "videos/OBJECT.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "OCTOBER",
+    "lemmas": [
+      "october"
+    ],
+    "hindi": [],
+    "videoPath": "videos/OCTOBER.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "OF",
+    "lemmas": [
+      "of"
+    ],
+    "hindi": [],
+    "videoPath": "videos/OF.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "OFFICE",
+    "lemmas": [
+      "office",
+      "work"
+    ],
+    "hindi": [],
+    "videoPath": "videos/OFFICE.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "OLD",
+    "lemmas": [
+      "old"
+    ],
+    "hindi": [],
+    "videoPath": "videos/OLD.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "ON",
+    "lemmas": [
+      "on"
+    ],
+    "hindi": [],
+    "videoPath": "videos/ON.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "ONLY",
+    "lemmas": [
+      "only"
+    ],
+    "hindi": [],
+    "videoPath": "videos/ONLY.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "OPEN",
+    "lemmas": [
+      "open",
+      "opening"
+    ],
+    "hindi": [],
+    "videoPath": "videos/OPEN.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "OUR",
+    "lemmas": [
+      "our"
+    ],
+    "hindi": [],
+    "videoPath": "videos/OUR.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "OUT",
+    "lemmas": [
+      "out"
+    ],
+    "hindi": [],
+    "videoPath": "videos/OUT.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "OVERDUE",
+    "lemmas": [
+      "overdue"
+    ],
+    "hindi": [],
+    "videoPath": "videos/OVERDUE.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "PAGE",
+    "lemmas": [
+      "book",
+      "page",
+      "paper"
+    ],
+    "hindi": [],
+    "videoPath": "videos/PAGE.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "PAIN",
+    "lemmas": [
+      "hurt",
+      "hurts",
+      "pain"
+    ],
+    "hindi": [],
+    "videoPath": "videos/PAIN.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "PANT",
+    "lemmas": [
+      "pant"
+    ],
+    "hindi": [],
+    "videoPath": "videos/PANT.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "PAPER",
+    "lemmas": [
+      "book",
+      "paper"
+    ],
+    "hindi": [],
+    "videoPath": "videos/PAPER.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "PAY",
+    "lemmas": [
+      "pay"
+    ],
+    "hindi": [],
+    "videoPath": "videos/PAY.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "PERCENTAGE",
+    "lemmas": [
+      "percentage"
+    ],
+    "hindi": [],
+    "videoPath": "videos/PERCENTAGE.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "PERFECT",
+    "lemmas": [
+      "awesome",
+      "excellent",
+      "fine",
+      "good",
+      "great",
+      "nice",
+      "perfect"
+    ],
+    "hindi": [],
+    "videoPath": "videos/PERFECT.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "PLAY",
+    "lemmas": [
+      "game",
+      "play",
+      "playing"
+    ],
+    "hindi": [],
+    "videoPath": "videos/PLAY.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "POOR",
+    "lemmas": [
+      "poor"
+    ],
+    "hindi": [],
+    "videoPath": "videos/POOR.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "POSITIVE",
+    "lemmas": [
+      "positive",
+      "yes"
+    ],
+    "hindi": [],
+    "videoPath": "videos/POSITIVE.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "POWER",
+    "lemmas": [
+      "power"
+    ],
+    "hindi": [],
+    "videoPath": "videos/POWER.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "PRACTICE",
+    "lemmas": [
+      "practice"
+    ],
+    "hindi": [],
+    "videoPath": "videos/PRACTICE.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "PROCESS",
+    "lemmas": [
+      "process"
+    ],
+    "hindi": [],
+    "videoPath": "videos/PROCESS.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "PRODUCT",
+    "lemmas": [
+      "product"
+    ],
+    "hindi": [],
+    "videoPath": "videos/PRODUCT.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "PUT",
+    "lemmas": [
+      "put"
+    ],
+    "hindi": [],
+    "videoPath": "videos/PUT.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "QUESTION",
+    "lemmas": [
+      "ask",
+      "question",
+      "what",
+      "when",
+      "where",
+      "which"
+    ],
+    "hindi": [],
+    "videoPath": "videos/QUESTION.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "QUIT",
+    "lemmas": [
+      "quit"
+    ],
+    "hindi": [],
+    "videoPath": "videos/QUIT.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "READ",
+    "lemmas": [
+      "book",
+      "read",
+      "reading"
+    ],
+    "hindi": [],
+    "videoPath": "videos/READ.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "REFUND",
+    "lemmas": [
+      "refund"
+    ],
+    "hindi": [],
+    "videoPath": "videos/REFUND.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "REJECT",
+    "lemmas": [
+      "never",
+      "no",
+      "nope",
+      "not",
+      "reject"
+    ],
+    "hindi": [],
+    "videoPath": "videos/REJECT.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "REMOVE",
+    "lemmas": [
+      "remove"
+    ],
+    "hindi": [],
+    "videoPath": "videos/REMOVE.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "RESULT",
+    "lemmas": [
+      "result"
+    ],
+    "hindi": [],
+    "videoPath": "videos/RESULT.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "RETURN",
+    "lemmas": [
+      "return"
+    ],
+    "hindi": [],
+    "videoPath": "videos/RETURN.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "REWARD",
+    "lemmas": [
+      "reward"
+    ],
+    "hindi": [],
+    "videoPath": "videos/REWARD.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "RIGHT",
+    "lemmas": [
+      "right"
+    ],
+    "hindi": [],
+    "videoPath": "videos/RIGHT.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "RISK",
+    "lemmas": [
+      "risk"
+    ],
+    "hindi": [],
+    "videoPath": "videos/RISK.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "SAD",
+    "lemmas": [
+      "sad",
+      "unhappy",
+      "upset"
+    ],
+    "hindi": [],
+    "videoPath": "videos/SAD.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "SALT",
+    "lemmas": [
+      "salt"
+    ],
+    "hindi": [],
+    "videoPath": "videos/SALT.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "SAME",
+    "lemmas": [
+      "same"
+    ],
+    "hindi": [],
+    "videoPath": "videos/SAME.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "SATISFIED",
+    "lemmas": [
+      "good",
+      "satisfied"
+    ],
+    "hindi": [],
+    "videoPath": "videos/SATISFIED.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "SELF",
+    "lemmas": [
+      "self"
+    ],
+    "hindi": [],
+    "videoPath": "videos/SELF.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "SHE",
+    "lemmas": [
+      "her",
+      "she"
+    ],
+    "hindi": [],
+    "videoPath": "videos/SHE.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "SISTER",
+    "lemmas": [
+      "sister"
+    ],
+    "hindi": [],
+    "videoPath": "videos/SISTER.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "SMALL",
+    "lemmas": [
+      "small"
+    ],
+    "hindi": [],
+    "videoPath": "videos/SMALL.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "SMILE",
+    "lemmas": [
+      "happy",
+      "smile"
+    ],
+    "hindi": [],
+    "videoPath": "videos/SMILE.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "SOLVE",
+    "lemmas": [
+      "solve"
+    ],
+    "hindi": [],
+    "videoPath": "videos/SOLVE.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "SORRY",
+    "lemmas": [
+      "apologize",
+      "apology",
+      "sorry"
+    ],
+    "hindi": [
+      "माफ",
+      "माफ़"
+    ],
+    "videoPath": "videos/SORRY.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "STOP",
+    "lemmas": [
+      "hold",
+      "stop",
+      "wait",
+      "waiting"
+    ],
+    "hindi": [],
+    "videoPath": "videos/STOP.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "STRONG",
+    "lemmas": [
+      "strong"
+    ],
+    "hindi": [],
+    "videoPath": "videos/STRONG.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "STUDENT",
+    "lemmas": [
+      "school",
+      "student"
+    ],
+    "hindi": [],
+    "videoPath": "videos/STUDENT.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "STUDY",
+    "lemmas": [
+      "homework",
+      "school",
+      "study",
+      "studying"
+    ],
+    "hindi": [],
+    "videoPath": "videos/STUDY.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "TABLE",
+    "lemmas": [
+      "table"
+    ],
+    "hindi": [],
+    "videoPath": "videos/TABLE.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "TALK",
+    "lemmas": [
+      "say",
+      "speak",
+      "speaking",
+      "talk",
+      "talking",
+      "tell"
+    ],
+    "hindi": [],
+    "videoPath": "videos/TALK.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "TARGET",
+    "lemmas": [
+      "target"
+    ],
+    "hindi": [],
+    "videoPath": "videos/TARGET.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "TASTE",
+    "lemmas": [
+      "delicious",
+      "eat",
+      "food",
+      "taste"
+    ],
+    "hindi": [],
+    "videoPath": "videos/TASTE.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "TEMPORARY",
+    "lemmas": [
+      "temporary",
+      "wait"
+    ],
+    "hindi": [],
+    "videoPath": "videos/TEMPORARY.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "THEN",
+    "lemmas": [
+      "then"
+    ],
+    "hindi": [],
+    "videoPath": "videos/THEN.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "THINGS",
+    "lemmas": [
+      "things"
+    ],
+    "hindi": [],
+    "videoPath": "videos/THINGS.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "THIS",
+    "lemmas": [
+      "this"
+    ],
+    "hindi": [],
+    "videoPath": "videos/THIS.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "TIGHT",
+    "lemmas": [
+      "tight"
+    ],
+    "hindi": [],
+    "videoPath": "videos/TIGHT.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "TIME",
+    "lemmas": [
+      "clock",
+      "o'clock",
+      "time"
+    ],
+    "hindi": [],
+    "videoPath": "videos/TIME.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "TO",
+    "lemmas": [
+      "to"
+    ],
+    "hindi": [],
+    "videoPath": "videos/TO.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "TOMORROW",
+    "lemmas": [
+      "tomorrow"
+    ],
+    "hindi": [],
+    "videoPath": "videos/TOMORROW.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "TOTAL",
+    "lemmas": [
+      "total"
+    ],
+    "hindi": [],
+    "videoPath": "videos/TOTAL.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "TRANSFER",
+    "lemmas": [
+      "transfer"
+    ],
+    "hindi": [],
+    "videoPath": "videos/TRANSFER.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "TRAVEL",
+    "lemmas": [
+      "go",
+      "journey",
+      "travel",
+      "trip"
+    ],
+    "hindi": [],
+    "videoPath": "videos/TRAVEL.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "TRUST",
+    "lemmas": [
+      "trust"
+    ],
+    "hindi": [],
+    "videoPath": "videos/TRUST.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "TRY",
+    "lemmas": [
+      "try"
+    ],
+    "hindi": [],
+    "videoPath": "videos/TRY.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "UNIT",
+    "lemmas": [
+      "unit"
+    ],
+    "hindi": [],
+    "videoPath": "videos/UNIT.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "UNIVERSITY",
+    "lemmas": [
+      "university"
+    ],
+    "hindi": [],
+    "videoPath": "videos/UNIVERSITY.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "UP",
+    "lemmas": [
+      "up"
+    ],
+    "hindi": [],
+    "videoPath": "videos/UP.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "US",
+    "lemmas": [
+      "us"
+    ],
+    "hindi": [],
+    "videoPath": "videos/US.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "VEGETABLE",
+    "lemmas": [
+      "vegetable"
+    ],
+    "hindi": [],
+    "videoPath": "videos/VEGETABLE.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "VEHICLES",
+    "lemmas": [
+      "autorickshaw",
+      "bus",
+      "traffic",
+      "train",
+      "vehicle",
+      "vehicles"
+    ],
+    "hindi": [],
+    "videoPath": "videos/VEHICLES.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "VILLAGE",
+    "lemmas": [
+      "village"
+    ],
+    "hindi": [],
+    "videoPath": "videos/VILLAGE.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "VISION",
+    "lemmas": [
+      "look",
+      "see",
+      "vision"
+    ],
+    "hindi": [],
+    "videoPath": "videos/VISION.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "VISIT",
+    "lemmas": [
+      "come",
+      "coming",
+      "visit"
+    ],
+    "hindi": [],
+    "videoPath": "videos/VISIT.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "VOLUME",
+    "lemmas": [
+      "volume"
+    ],
+    "hindi": [],
+    "videoPath": "videos/VOLUME.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "WALK",
+    "lemmas": [
+      "come",
+      "coming",
+      "go",
+      "going",
+      "walk",
+      "walking",
+      "went"
+    ],
+    "hindi": [],
+    "videoPath": "videos/WALK.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "WE",
+    "lemmas": [
+      "our",
+      "us",
+      "we"
+    ],
+    "hindi": [],
+    "videoPath": "videos/WE.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "WEAK",
+    "lemmas": [
+      "weak"
+    ],
+    "hindi": [],
+    "videoPath": "videos/WEAK.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "WHO",
+    "lemmas": [
+      "who"
+    ],
+    "hindi": [],
+    "videoPath": "videos/WHO.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "WHY",
+    "lemmas": [
+      "why"
+    ],
+    "hindi": [],
+    "videoPath": "videos/WHY.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "WIN",
+    "lemmas": [
+      "win"
+    ],
+    "hindi": [],
+    "videoPath": "videos/WIN.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "WISH",
+    "lemmas": [
+      "wish"
+    ],
+    "hindi": [],
+    "videoPath": "videos/WISH.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "WRONG",
+    "lemmas": [
+      "wrong"
+    ],
+    "hindi": [],
+    "videoPath": "videos/WRONG.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "YEAR",
+    "lemmas": [
+      "age",
+      "old",
+      "year"
+    ],
+    "hindi": [],
+    "videoPath": "videos/YEAR.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "YOU",
+    "lemmas": [
+      "you",
+      "your"
+    ],
+    "hindi": [
+      "आप",
+      "तुम",
+      "तुम्हें"
+    ],
+    "videoPath": "videos/YOU.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "YOUR",
+    "lemmas": [
+      "your"
+    ],
+    "hindi": [],
+    "videoPath": "videos/YOUR.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "ZEBRA",
+    "lemmas": [
+      "zebra"
+    ],
+    "hindi": [],
+    "videoPath": "videos/ZEBRA.mp4",
+    "durationMs": 1200
+  },
+  {
+    "glossId": "ZONE",
+    "lemmas": [
+      "zone"
+    ],
+    "hindi": [],
+    "videoPath": "videos/ZONE.mp4",
+    "durationMs": 1200
+  }
+]

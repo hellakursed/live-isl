@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="isl_bg">#0B1F2A</color>
+    <color name="isl_surface">#143447</color>
+    <color name="isl_accent">#2EC4B6</color>
+    <color name="isl_warm">#F4A261</color>
+    <color name="isl_text">#F7F9FB</color>
+    <color name="isl_muted">#9BB4C4</color>
+</resources>

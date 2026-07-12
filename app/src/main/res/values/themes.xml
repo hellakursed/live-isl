@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.LiveISL" parent="android:Theme.Material.Light.NoActionBar">
+        <item name="android:statusBarColor">@color/isl_bg</item>
+        <item name="android:navigationBarColor">@color/isl_bg</item>
+        <item name="android:windowBackground">@color/isl_bg</item>
+        <item name="android:colorPrimary">@color/isl_accent</item>
+    </style>
+</resources>

@@ -1,0 +1,33 @@
+# Built application files
+*.apk
+*.aar
+*.ap_
+*.aab
+
+# Gradle
+.gradle/
+build/
+**/build/
+
+# Local config
+local.properties
+*.iml
+.idea/
+.DS_Store
+captures/
+.externalNativeBuild/
+.cxx/
+*.log
+.kotlin/
+.tmp_isl_videos/
+sdcard/
+
+# Large optional ASR models (document how to fetch)
+app/src/main/assets/asr/*.onnx
+app/src/main/assets/asr/*.tflite
+app/src/main/assets/asr/*.pt
+!app/src/main/assets/asr/README.txt
+
+# Optional CISLR packs + secrets (hosted via GitHub Releases, not git)
+packs/
+**/packs/.hf_token
