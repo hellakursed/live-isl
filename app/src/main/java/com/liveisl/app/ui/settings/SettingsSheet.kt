@@ -19,6 +19,7 @@ import androidx.compose.material3.ModalBottomSheet
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.RadioButton
 import androidx.compose.material3.RadioButtonDefaults
+import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.material3.rememberModalBottomSheetState
@@ -44,6 +45,7 @@ fun SettingsSheet(
     cislrStatus: CislrPackStatus,
     cislrPackUrl: String,
     playbackSpeed: Float,
+    showGlossCards: Boolean,
     onModeSelected: (SignOutputMode) -> Unit,
     onCharacterSelected: (AvatarCharacter) -> Unit,
     onVideoSourceSelected: (VideoSource) -> Unit,
@@ -51,6 +53,7 @@ fun SettingsSheet(
     onDownloadCislr: () -> Unit,
     onRefreshCislr: () -> Unit,
     onPlaybackSpeedSelected: (Float) -> Unit,
+    onShowGlossCardsChange: (Boolean) -> Unit,
     onDismiss: () -> Unit,
 ) {
     val sheetState = rememberModalBottomSheetState(skipPartiallyExpanded = true)
@@ -81,6 +84,30 @@ fun SettingsSheet(
                     title = mode.label,
                     subtitle = mode.description,
                     onClick = { onModeSelected(mode) },
+                )
+            }
+
+            Spacer(modifier = Modifier.height(20.dp))
+            SectionLabel("Gloss cards")
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .clip(RoundedCornerShape(12.dp))
+                    .padding(horizontal = 8.dp, vertical = 8.dp),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.spacedBy(12.dp),
+            ) {
+                Column(modifier = Modifier.weight(1f)) {
+                    Text("Show gloss cards", style = MaterialTheme.typography.bodyLarge)
+                    Text(
+                        text = "When a clip is missing, show the sign as text instead of skipping it",
+                        style = MaterialTheme.typography.bodyMedium,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    )
+                }
+                Switch(
+                    checked = showGlossCards,
+                    onCheckedChange = onShowGlossCardsChange,
                 )
             }
 

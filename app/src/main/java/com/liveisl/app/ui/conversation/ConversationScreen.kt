@@ -86,6 +86,7 @@ fun ConversationScreen(
             cislrStatus = state.cislrStatus,
             cislrPackUrl = state.cislrPackUrl,
             playbackSpeed = state.playbackSpeed,
+            showGlossCards = state.showGlossCards,
             onModeSelected = vm::setSignOutputMode,
             onCharacterSelected = vm::setAvatarCharacter,
             onVideoSourceSelected = vm::setVideoSource,
@@ -93,6 +94,7 @@ fun ConversationScreen(
             onDownloadCislr = vm::downloadCislrPack,
             onRefreshCislr = vm::refreshCislrStatus,
             onPlaybackSpeedSelected = vm::setPlaybackSpeed,
+            onShowGlossCardsChange = vm::setShowGlossCards,
             onDismiss = vm::dismissSettings,
         )
     }
@@ -422,11 +424,17 @@ private fun SignStage(
                         Text(
                             text = missingVideoLabel,
                             modifier = Modifier
-                                .clip(RoundedCornerShape(12.dp))
-                                .background(Color(0xCC143447))
-                                .padding(horizontal = 16.dp, vertical = 10.dp),
-                            style = MaterialTheme.typography.titleLarge,
+                                .clip(RoundedCornerShape(16.dp))
+                                .background(Color(0xEE143447))
+                                .border(
+                                    1.dp,
+                                    MaterialTheme.colorScheme.secondary.copy(alpha = 0.55f),
+                                    RoundedCornerShape(16.dp),
+                                )
+                                .padding(horizontal = 28.dp, vertical = 18.dp),
+                            style = MaterialTheme.typography.displaySmall,
                             color = MaterialTheme.colorScheme.secondary,
+                            textAlign = TextAlign.Center,
                         )
                     }
 
@@ -462,14 +470,30 @@ private fun SignStage(
         } else {
             LazyRow(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                 items(glossStrip) { g ->
+                    val isTextCard = g.startsWith("▭ ")
                     Text(
-                        text = g,
+                        text = if (isTextCard) g.removePrefix("▭ ") else g,
                         modifier = Modifier
                             .clip(RoundedCornerShape(8.dp))
-                            .background(MaterialTheme.colorScheme.surface)
+                            .background(
+                                if (isTextCard) {
+                                    MaterialTheme.colorScheme.secondaryContainer
+                                } else {
+                                    MaterialTheme.colorScheme.surface
+                                },
+                            )
+                            .border(
+                                width = if (isTextCard) 1.dp else 0.dp,
+                                color = MaterialTheme.colorScheme.secondary.copy(alpha = 0.5f),
+                                shape = RoundedCornerShape(8.dp),
+                            )
                             .padding(horizontal = 10.dp, vertical = 6.dp),
                         style = MaterialTheme.typography.labelLarge,
-                        color = MaterialTheme.colorScheme.primary,
+                        color = if (isTextCard) {
+                            MaterialTheme.colorScheme.onSecondaryContainer
+                        } else {
+                            MaterialTheme.colorScheme.primary
+                        },
                     )
                 }
             }

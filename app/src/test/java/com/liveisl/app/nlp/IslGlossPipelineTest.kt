@@ -4,6 +4,34 @@ import org.junit.Assert.assertEquals
 import org.junit.Assert.assertTrue
 import org.junit.Test
 
+class IslGlossPlannerTest {
+    @Test
+    fun timeBeforeSubjectObjectVerb() {
+        // "I need help today" → today I help need (TIME SUBJ OBJ VERB)
+        val planned = IslGlossPlanner.prepareLemmas(listOf("I", "need", "help", "today"))
+        assertEquals(listOf("today", "i", "help", "need"), planned)
+    }
+
+    @Test
+    fun whQuestionFinal() {
+        // Classic ISL: WH clause-final (Zeshan / Aboh et al.)
+        val planned = IslGlossPlanner.prepareLemmas(listOf("what", "do", "you", "want"))
+        assertEquals(listOf("you", "want", "what"), planned)
+    }
+
+    @Test
+    fun dropsEnglishFunctionWords() {
+        val planned = IslGlossPlanner.prepareLemmas(listOf("I", "am", "going", "to", "the", "school"))
+        assertEquals(listOf("i", "school", "go"), planned)
+    }
+
+    @Test
+    fun negationAfterVerbBeforeWh() {
+        val planned = IslGlossPlanner.prepareLemmas(listOf("why", "you", "not", "go"))
+        assertEquals(listOf("you", "go", "not", "why"), planned)
+    }
+}
+
 class IslGlossPipelinePureTest {
     private val lemmaToGloss = mapOf(
         "hello" to "MEET",
@@ -16,14 +44,9 @@ class IslGlossPipelinePureTest {
         "help" to "HELP",
     )
 
-    private val stop = setOf("a", "an", "the", "is", "are", "to", "of", "and")
-
     private fun process(text: String): List<String> {
-        val tokens = text.lowercase()
-            .replace(Regex("[^\\p{L}\\p{N}\\s']"), " ")
-            .split(Regex("\\s+"))
-            .filter { it.isNotBlank() && it !in stop }
-        return tokens.mapNotNull { lemmaToGloss[it] }
+        val lemmas = IslGlossPlanner.prepareLemmas(IslGlossPlanner.tokenize(text))
+        return lemmas.mapNotNull { lemmaToGloss[it] }
     }
 
     @Test
@@ -37,9 +60,9 @@ class IslGlossPipelinePureTest {
     }
 
     @Test
-    fun openVocabularySentence() {
+    fun openVocabularySentenceSovOrder() {
         val g = process("I want water")
-        assertTrue(g.containsAll(listOf("I", "NEED", "DRINK")))
+        assertEquals(listOf("I", "DRINK", "NEED"), g)
     }
 
     @Test

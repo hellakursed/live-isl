@@ -60,6 +60,7 @@ data class ConversationUiState(
     val cislrStatus: CislrPackStatus = CislrPackStatus(),
     val cislrPackUrl: String = "",
     val playbackSpeed: Float = 1f,
+    val showGlossCards: Boolean = false,
     val latency: LatencyStats = LatencyStats(),
     val skippedWords: List<String> = emptyList(),
     val suggestedWords: List<String> = emptyList(),
@@ -90,6 +91,7 @@ class ConversationViewModel(application: Application) : AndroidViewModel(applica
             cislrStatus = cislrPack.refreshStatus(),
             cislrPackUrl = preferences.cislrPackUrl,
             playbackSpeed = preferences.playbackSpeed,
+            showGlossCards = preferences.showGlossCards,
         ),
     )
     val uiState: StateFlow<ConversationUiState> = _ui.asStateFlow()
@@ -104,6 +106,7 @@ class ConversationViewModel(application: Application) : AndroidViewModel(applica
                 videoSource = preferences.videoSource,
                 cislrStatus = cislrPack.refreshStatus(),
                 playbackSpeed = preferences.playbackSpeed,
+                showGlossCards = preferences.showGlossCards,
             )
         }
 
@@ -310,6 +313,20 @@ class ConversationViewModel(application: Application) : AndroidViewModel(applica
         }
     }
 
+    fun setShowGlossCards(enabled: Boolean) {
+        preferences.showGlossCards = enabled
+        _ui.update {
+            it.copy(
+                showGlossCards = enabled,
+                bootstrapMessage = if (enabled) {
+                    "Gloss cards on — missing clips show as text"
+                } else {
+                    "Gloss cards off — missing clips skipped"
+                },
+            )
+        }
+    }
+
     fun setRole(role: ConversationRole) {
         if (role == ConversationRole.SIGNER_CAMERA) {
             viewModelScope.launch { stopListening() }
@@ -357,11 +374,16 @@ class ConversationViewModel(application: Application) : AndroidViewModel(applica
 
             var played = 0
             for (word in phrase) {
-                val requireVideo = mode == SignOutputMode.VIDEO
-                val glosses = pipeline.processCommittedWords(listOf(word), requireVideo)
+                val glosses = pipeline.processCommittedWords(
+                    words = listOf(word),
+                    requireVideo = mode == SignOutputMode.VIDEO,
+                    showGlossCards = _ui.value.showGlossCards,
+                )
                 if (glosses.isEmpty()) continue
                 played += glosses.size
-                val labels = glosses.map { it.displayLabel }
+                val labels = glosses.map { gloss ->
+                    if (gloss.videoAssetPath.isNullOrBlank()) "▭ ${gloss.displayLabel}" else gloss.displayLabel
+                }
                 _ui.update { s ->
                     s.copy(
                         glossStrip = (s.glossStrip + labels).takeLast(24),
@@ -507,9 +529,14 @@ class ConversationViewModel(application: Application) : AndroidViewModel(applica
             .trim()
             .split(Regex("\\s+"))
             .filter { it.isNotBlank() }
-        val requireVideo = _ui.value.signOutputMode == SignOutputMode.VIDEO
+        val videoMode = _ui.value.signOutputMode == SignOutputMode.VIDEO
+        val glossCards = _ui.value.showGlossCards
         val t0 = android.os.SystemClock.elapsedRealtime()
-        val glosses: List<Gloss> = pipeline.processCommittedWords(englishWords, requireVideo)
+        val glosses: List<Gloss> = pipeline.processCommittedWords(
+            words = englishWords,
+            requireVideo = videoMode,
+            showGlossCards = glossCards,
+        )
         val mapMs = android.os.SystemClock.elapsedRealtime() - t0
         val skipped = pipeline.lastSkippedWords
         _ui.update { s ->
@@ -517,21 +544,23 @@ class ConversationViewModel(application: Application) : AndroidViewModel(applica
                 skippedWords = skipped,
                 latency = s.latency.copy(glossMapMs = mapMs),
                 bootstrapMessage = when {
-                    requireVideo && glosses.isEmpty() && skipped.isNotEmpty() ->
-                        "No video yet for: ${skipped.joinToString(", ")} — try chips below or switch to 3D avatar"
-                    requireVideo && skipped.isNotEmpty() ->
+                    videoMode && !glossCards && glosses.isEmpty() && skipped.isNotEmpty() ->
+                        "No video yet for: ${skipped.joinToString(", ")} — enable Gloss cards or try chips"
+                    videoMode && !glossCards && skipped.isNotEmpty() ->
                         "Skipped (no clip): ${skipped.joinToString(", ")}"
                     else -> s.bootstrapMessage
                 },
             )
         }
         if (glosses.isEmpty()) return
-        val labels = glosses.map { it.displayLabel }
+        val labels = glosses.map { gloss ->
+            if (gloss.videoAssetPath.isNullOrBlank()) "▭ ${gloss.displayLabel}" else gloss.displayLabel
+        }
         _ui.update { s ->
             s.copy(
                 glossStrip = (s.glossStrip + labels).takeLast(24),
-                currentGlossLabel = labels.first(),
-                lastGlossLabel = labels.first(),
+                currentGlossLabel = glosses.first().displayLabel,
+                lastGlossLabel = glosses.first().displayLabel,
                 isSigning = true,
             )
         }

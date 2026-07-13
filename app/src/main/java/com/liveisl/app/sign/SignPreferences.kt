@@ -43,12 +43,23 @@ class SignPreferences(context: Context) {
             prefs.edit().putFloat(KEY_PLAYBACK_SPEED, value.coerceIn(0.5f, 2f)).apply()
         }
 
+    /**
+     * When true (video mode), missing clips still enqueue as text gloss cards
+     * instead of being skipped.
+     */
+    var showGlossCards: Boolean
+        get() = prefs.getBoolean(KEY_GLOSS_CARDS, false)
+        set(value) {
+            prefs.edit().putBoolean(KEY_GLOSS_CARDS, value).apply()
+        }
+
     companion object {
         private const val KEY_MODE = "sign_output_mode"
         private const val KEY_CHARACTER = "avatar_character"
         private const val KEY_VIDEO_SOURCE = "video_source"
         private const val KEY_CISLR_URL = "cislr_pack_url"
         private const val KEY_PLAYBACK_SPEED = "playback_speed"
+        private const val KEY_GLOSS_CARDS = "show_gloss_cards"
 
         val PLAYBACK_SPEED_OPTIONS = listOf(0.5f, 0.75f, 1f, 1.25f, 1.5f)
     }
